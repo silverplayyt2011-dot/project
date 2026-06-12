@@ -8,6 +8,13 @@ def index():
 	ip_addr = request.remote_addr
 	d = db.Database()
 	data = d.get_zadachi_by_ip(ip_addr)
+	# data список из списков задач
+	# для каждой задачи:
+	# 0-ой индекс: текст самой задачи
+	# 1-ый индекс: дата когда задача была поставлена
+	# 2-ой индекс: дата когда задача была выполнена
+	# 3-ий индекс: статус задачи (0 → не выполнена, 1 → выполнена)
+	# 4-ый индекс: id задачи
 	d.close()
 	return render_template('index.html', data=data)
 
